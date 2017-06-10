@@ -119,7 +119,7 @@ query9 <- "SELECT playerID, yearID, HR
             WHERE (playerID LIKE 'abbotgl%') OR (playerID LIKE '_bbotje01')"
 dbGetQuery(con, query9)
 
-# search: playerID with 'abbot' but are not 'abbotji01' and 'abbotpa01'
+# searcch: playerID with 'abbot' but are not 'abbotji01' and 'abbotpa01'
 query10 <- "SELECT playerID, yearID, HR
             FROM batting
             WHERE (playerID LIKE 'abbot%') AND NOT (playerID IN ('abbotji01','abbotpa01'))"
@@ -141,3 +141,4 @@ query12 <- 'SELECT playerID, AVG(HR) as avgHR
               HAVING avgHR > 3.5
               LIMIT 5'
 dbGetQuery(con, query12)
+
