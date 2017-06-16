@@ -38,3 +38,28 @@ begin
 end
 
 select @salary -- won't work
+
+/*
+	case - (when) - end
+*/
+select top 100 exercise, COUNT(exercise)
+from ovs.dbo.optContract
+group by exercise
+
+-- use a select statement with a simple case expression
+select top 100 optId, type_ = 
+	case 
+		when exercise = 'A' then 'American'
+		when exercise = 'E' then 'European'
+	end
+from ovs.dbo.optContract
+
+
+-- use a select statement with a searched case expression
+select top 100 optId, strike, statement_ = 
+	case 
+		when strike > 30 then 'high'
+		when strike < 20 then 'low'
+		else 'fair'
+	end
+from ovs.dbo.optContract
