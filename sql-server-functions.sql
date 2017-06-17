@@ -34,6 +34,6 @@ declare
 	@doc varchar(20)
 	
 set @sign = '$'
-set	@doc = 'I got $x + y = 1$ from $x = 0$ and $y = 1$'
+set @doc = 'I got $x + y = 1$ from $x = 0$ and $y = 1$'
 
 select CHARINDEX(@sign, @doc) -- return 7
