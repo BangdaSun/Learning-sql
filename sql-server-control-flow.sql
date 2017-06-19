@@ -19,7 +19,7 @@ set @b = (
 select @b -- return 3
 
 /*
-	if - else
+	if - else, no else if statement
 */
 if (@a < 4) 
 	select 'small a'
