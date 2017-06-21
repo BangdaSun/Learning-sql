@@ -48,3 +48,17 @@ from optPrice
 where 1 = 1
 	and optId = 3
 	and ask between 11.5 and 12
+
+/*
+	exists operator
+	just like boolean expression, return ture / false, and return corresponding results for true
+*/
+select op.bid, op.ask
+from ovs.dbo.optPrice op
+where exists( 
+	select oc.optId
+	from optContract oc
+	where 1=1
+		and oc.opraRoot = 'AAPL'
+		and '20170620' between oc.startDate and oc.endDate
+		and oc.strike > 100)
