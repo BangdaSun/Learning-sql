@@ -63,3 +63,23 @@ select top 100 optId, strike, statement_ =
 		else 'fair'
 	end
 from ovs.dbo.optContract
+
+/*
+	while expr
+	begin
+	...
+	end
+*/
+-- set local variables 
+declare @startDate date
+declare @endDate date
+declare @date date
+set @startDate = '20170605'
+set @endDate = '20170616'
+set @date = @startDate 
+-- while loop (run together with the variables set part)
+while datediff(day, DATEADD(DAY, 1, @date), DATEADD(DAY, -1, @endDate)) > 0
+begin
+	select @date as date_
+	set @date = DATEADD(DAY, 1, @date)
+end
