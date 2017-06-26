@@ -59,3 +59,14 @@ set @endDate = '20170616'
 )
 select cte.date_
 from cte
+
+-- previous example with non-recursive cte
+;with cteRange(dateRange) as (
+		select @startDate
+		union all
+		select DATEADD(DAY, 1, dateRange)
+		from cteRange
+		where dateRange <= DATEADD(DAY, -1, @endDate)
+)
+select dateRange 
+from cteRange
