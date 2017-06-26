@@ -22,3 +22,33 @@ begin
 	return
 end
 */
+-- ==============================================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	return the days between a start date and end date
+-- ==============================================================
+alter function [dbo].[fnGetDay] 
+(	
+	-- Add the parameters for the function here
+	@startDate date,
+	@endDate   date
+)
+returns 
+@tbl table (
+	individualDate date
+)
+as
+begin
+	-- ======================= body of function ======================
+	;with cteRange(dateRange) as (
+		select @startDate
+		union all
+		select DATEADD(DAY, 1, dateRange)
+		from cteRange
+		where dateRange <= DATEADD(DAY, -1, @endDate)
+	)
+	insert into @tbl(individualDate)
+	select dateRange 
+	from cteRange
+	return
+end
