@@ -43,3 +43,19 @@ from cteExample ctee join optPrice op on ctee.cte_optId = op.optId
 select * from cteExample
 -- this query won't work
 
+/*
+	example of recursive cte:
+	return the days between a start date and end date
+*/
+declare @startDate date
+declare @endDate date
+set @startDate = '20170605'
+set @endDate = '20170616'
+;with cte as (
+	select @startDate as date_
+	union all
+	select DATEADD(DAY, 1, date_) as date_
+	from cte where date_ < @endDate
+)
+select cte.date_
+from cte
