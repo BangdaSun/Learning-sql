@@ -1,5 +1,5 @@
 /*
-declare varibales
+  declare varibales
 */
 declare @a int
 set @a = 3
@@ -12,8 +12,8 @@ from ovs.dbo.optContract -- return 3
 -- declare variable from select clause
 declare @b int
 set @b = (
-	select top 1 @a
-	from ovs.dbo.optContract
+  select top 1 @a
+  from ovs.dbo.optContract
 )
 
 select @b -- return 3
@@ -23,9 +23,9 @@ select @b -- return 3
   if - else (no else if statement here)
 */
 if (@a < 4) 
-	select 'small a'
+  select 'small a'
 else
-	select 'large a'
+  select 'large a'
 
 
 /*
@@ -33,10 +33,10 @@ else
 */
 begin 
   declare @salary float
-	declare @hour int
-	set @salary = 22
-	set @hour = 40
-	select @hour * @salary
+  declare @hour int
+  set @salary = 22
+  set @hour = 40
+  select @hour * @salary
 end
 
 select @salary -- won't work
@@ -51,20 +51,20 @@ from ovs.dbo.optContract
 group by exercise
 
 -- use a select statement with a simple case expression
-select top 100 optId, type_ = 
-	case 
-		when exercise = 'A' then 'American'
-		when exercise = 'E' then 'European'
-	end
+select top 100 optId, type_ =
+  case 
+    when exercise = 'A' then 'American'
+    when exercise = 'E' then 'European'
+  end
 from ovs.dbo.optContract
 
 -- use a select statement with a searched case expression
 select top 100 optId, strike, statement_ = 
-	case 
-		when strike > 30 then 'high'
-		when strike < 20 then 'low'
-		else 'fair'
-	end
+  case 
+    when strike > 30 then 'high'
+    when strike < 20 then 'low'
+    else 'fair'
+  end
 from ovs.dbo.optContract
 
 
@@ -72,9 +72,9 @@ from ovs.dbo.optContract
   while loop
   
   while logical expression
-	begin
-	...
-	end
+    begin
+    ...
+    end
 */
 -- set local variables 
 declare @startDate date
@@ -86,6 +86,6 @@ set @date = @startDate
 -- while loop (run together with the variables set part)
 while datediff(day, DATEADD(DAY, 1, @date), DATEADD(DAY, -1, @endDate)) > 0
 begin
-	select @date as date_
-	set @date = DATEADD(DAY, 1, @date)
+  select @date as date_
+  set @date = DATEADD(DAY, 1, @date)
 end
