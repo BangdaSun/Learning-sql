@@ -11,21 +11,21 @@ go
 SET QUOTED_IDENTIFIER ON
 go
 
- -- create can be used only once, to extend the function, use alter
+-- create can be used only once, to extend the function, use alter
 create/alter function myfun ( 
-	@var1 datatype,
+  @var1 datatype,
   @var2 datatype,
   ...
 ) returns @tbl table (
-   var1 datatype,
-   var2 datatype,
-   ...
+  var1 datatype,
+  var2 datatype,
+  ...
 ) as 
 begin
-   ...
-   [queries]
-   ...
-	 return
+  ...
+  [queries]
+  ...
+  return
 end
 */
 
