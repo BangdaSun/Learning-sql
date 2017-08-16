@@ -29,7 +29,7 @@ begin
 end
 */
 
--- one example:
+-- one example of table function:
 -- --------------------------------------------------------------
 -- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
@@ -37,27 +37,27 @@ end
 -- --------------------------------------------------------------
 alter function [dbo].[fnGetDay] 
 (	
-	-- Add the parameters for the function here
-	@startDate date,
-	@endDate   date
+  -- Add the parameters for the function here
+  @startDate date,
+  @endDate   date
 )
 returns 
 @tbl table (
-	individualDate date
+  individualDate date
 )
 as
 begin
-	-- ------------- body of function -----------------
-	;with cteRange(dateRange) as (
-		select @startDate
-		union all
-		select DATEADD(DAY, 1, dateRange)
-		from cteRange
-		where dateRange <= DATEADD(DAY, -1, @endDate)
-	)
-	insert into @tbl(individualDate)
-	select dateRange 
-	from cteRange
+  -- ------------- body of function -----------------
+  ;with cteRange(dateRange) as (
+    select @startDate
+    union all
+    select DATEADD(DAY, 1, dateRange)
+    from cteRange
+    where dateRange <= DATEADD(DAY, -1, @endDate)
+  )
+  insert into @tbl(individualDate)
+    select dateRange 
+    from cteRange
   
-	return
+  return
 end
