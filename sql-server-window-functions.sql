@@ -12,11 +12,9 @@
 /*
 	One of the most important benefits of window function is that
 	we can access the details of rows from an aggregation
-	
-	Suppose we have the data: where for each optId, there are a set
-	of bid / ask price
-*/
+*/	
 
+-- Suppose we have the data: where for each optId, there are a set of bid / ask price
 select top 100 *
 from optPrice
 
@@ -38,6 +36,7 @@ group by optId
 
 /*
 	Now what if we want to return the avg_mid to each row in optPrice?
+  
 	One way is write a subquery with group by clause for each aggregation
 	then join with the main query correspondingly
 	
@@ -59,7 +58,7 @@ where 1 = 1
 	and op.optId = aa.optId
 
 /*
-	Third method: use clause OVER()
+	Third method: use OVER()
 	(slower query than above)	
 */
 select top 10 optId,
@@ -67,4 +66,3 @@ select top 10 optId,
 	ask,
 	AVG(.5*(bid + ask)) over(partition by optId) as avg_mid
 from optPrice
-
