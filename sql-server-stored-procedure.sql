@@ -32,15 +32,16 @@ drop db.dbo.my_proc
 
 */
 
+-- one example:
 ALTER procedure [dbo].[getBoxStrategy]
   -- input
-  @root			varchar(6),
-  @expiry			date,
-  @moneynessType	int,
-  @moneynessLow	float,
-  @moneynessHigh	float,
-  @startdate		date,
-  @enddate		date
+  @root          varchar(6),
+  @expiry         date,
+  @moneynessType  int,
+  @moneynessLow   float,
+  @moneynessHigh  float,
+  @startdate      date,
+  @enddate        date
 as
 begin
 	-- output
@@ -50,14 +51,15 @@ begin
     opraRoot varchar(6),
     optId    int,
     putCall  varchar(1),
-		strike   float,
+    strike   float,
     expDate  date,
     T        float,
-	  buySell  int,
+    buySell  int,
     index_   int
   )
 end
 
+-- execution store procedure
 -- declare @tbl first
 -- vertical call
 insert @tbl 
