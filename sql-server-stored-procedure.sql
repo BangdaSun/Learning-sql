@@ -35,7 +35,7 @@ drop db.dbo.my_proc
 -- one example:
 ALTER procedure [dbo].[getBoxStrategy]
   -- input
-  @root          varchar(6),
+  @root           varchar(6),
   @expiry         date,
   @moneynessType  int,
   @moneynessLow   float,
