@@ -1,32 +1,40 @@
 /*
+  Define your own functions 
+  it could be scalar functions, table functions, etc
+
+  General format:
+  
 use dbname
 go
 SET ANSI_NULLS ON
-GO
+go
 SET QUOTED_IDENTIFIER ON
-GO
+go
 
-create/alter function myfun (  -- create can be used only once, to extend the function, use alter
+ -- create can be used only once, to extend the function, use alter
+create/alter function myfun ( 
 	@var1 datatype,
-    @var2 datatype,
-    ...
+  @var2 datatype,
+  ...
 ) returns @tbl table (
-    var1 datatype,
-    var2 datatype,
-    ...
+   var1 datatype,
+   var2 datatype,
+   ...
 ) as 
 begin
-
-    [queries]
-
-	return
+   ...
+   [queries]
+   ...
+	 return
 end
 */
--- ==============================================================
+
+-- one example:
+-- --------------------------------------------------------------
 -- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
 -- Description:	return the days between a start date and end date
--- ==============================================================
+-- --------------------------------------------------------------
 alter function [dbo].[fnGetDay] 
 (	
 	-- Add the parameters for the function here
@@ -39,7 +47,7 @@ returns
 )
 as
 begin
-	-- ======================= body of function ======================
+	-- ------------- body of function -----------------
 	;with cteRange(dateRange) as (
 		select @startDate
 		union all
@@ -50,5 +58,6 @@ begin
 	insert into @tbl(individualDate)
 	select dateRange 
 	from cteRange
+  
 	return
 end
