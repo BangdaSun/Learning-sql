@@ -1,13 +1,13 @@
 /*
-	Set operator in sql
-	6/9/2017
+  Set operator in sql
+  6/9/2017
 	
-	Requirements for set operations:
-	1. all queries combined must have an equal number of expressions in target lists
-	2. expressions should have similar data types
-	3. expressions should in the same order
+  Requirements for set operations:
+  1. all queries combined must have an equal number of expressions in target lists
+  2. expressions should have similar data types
+  3. expressions should in the same order
 	
-	be careful when using order by (us it at end)
+  be careful when using order by (us it at end)
 */
 
 select top 1000 * 
@@ -18,46 +18,47 @@ from optPrice
 select optId, bid, ask
 from optPrice
 where 1 = 1
-	and optId = 3
+  and optId = 3
 union all
 select optId, bid, ask 
 from optPrice
 where 1 = 1
-	and optId = 4
+  and optId = 4
 
 -- except
 select optId, bid, ask
 from optPrice
 where 1 = 1
-	and optId = 3
+  and optId = 3
 except
 select optId, bid, ask
 from optPrice
 where 1 = 1
-	and optId = 3
-	and bid >= 10
+  and optId = 3
+  and bid >= 10
 
 -- intersect
 select optId, bid, ask
 from optPrice
 where 1 = 1
-	and optId = 3
-	and bid between 10 and 12
+  and optId = 3
+  and bid between 10 and 12
 intersect
 select optId, bid, ask
 from optPrice
 where 1 = 1
-	and optId = 3
-	and ask between 11.5 and 12
+  and optId = 3
+  and ask between 11.5 and 12
 
 -- exists operator
 -- just like boolean expression, return ture / false, and return corresponding results for true
+-- usually followed by a sub-query
 select op.bid, op.ask
 from ovs.dbo.optPrice op
 where exists( 
-	select oc.optId
-	from optContract oc
-	where 1=1
-		and oc.opraRoot = 'AAPL'
-		and '20170620' between oc.startDate and oc.endDate
-		and oc.strike > 100)
+  select oc.optId
+  from optContract oc
+  where 1=1
+    and oc.opraRoot = 'AAPL'
+    and '20170620' between oc.startDate and oc.endDate
+    and oc.strike > 100)
