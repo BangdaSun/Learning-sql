@@ -7,13 +7,14 @@
 	2. expressions should have similar data types
 	3. expressions should in the same order
 	
-	be careful when using order by
+	be careful when using order by (us it at end)
 */
 
 select top 1000 * 
 from optPrice
 
--- Union
+-- union
+-- will remove duplicate records, use union all to keep all records
 select optId, bid, ask
 from optPrice
 where 1 = 1
@@ -24,7 +25,7 @@ from optPrice
 where 1 = 1
 	and optId = 4
 
--- Except
+-- except
 select optId, bid, ask
 from optPrice
 where 1 = 1
@@ -36,7 +37,7 @@ where 1 = 1
 	and optId = 3
 	and bid >= 10
 
--- Intersect
+-- intersect
 select optId, bid, ask
 from optPrice
 where 1 = 1
@@ -49,10 +50,8 @@ where 1 = 1
 	and optId = 3
 	and ask between 11.5 and 12
 
-/*
-	exists operator
-	just like boolean expression, return ture / false, and return corresponding results for true
-*/
+-- exists operator
+-- just like boolean expression, return ture / false, and return corresponding results for true
 select op.bid, op.ask
 from ovs.dbo.optPrice op
 where exists( 
