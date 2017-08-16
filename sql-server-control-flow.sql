@@ -9,7 +9,7 @@ select @a -- return 3
 select top 1 @a 
 from ovs.dbo.optContract -- return 3
 
--- 
+-- declare variable from select clause
 declare @b int
 set @b = (
 	select top 1 @a
@@ -18,16 +18,18 @@ set @b = (
 
 select @b -- return 3
 
+
 /*
-	if - else, no else if statement
+	if - else (no else if statement here)
 */
 if (@a < 4) 
 	select 'small a'
 else
 	select 'large a'
 
+
 /*
-	begin ... end
+	begin - end
 */
 begin 
 	declare @salary float
@@ -39,9 +41,11 @@ end
 
 select @salary -- won't work
 
+
 /*
-	case - (when) - end
+	case - when - end
 */
+-- data
 select top 100 exercise, COUNT(exercise)
 from ovs.dbo.optContract
 group by exercise
@@ -54,7 +58,6 @@ select top 100 optId, type_ =
 	end
 from ovs.dbo.optContract
 
-
 -- use a select statement with a searched case expression
 select top 100 optId, strike, statement_ = 
 	case 
@@ -64,8 +67,11 @@ select top 100 optId, strike, statement_ =
 	end
 from ovs.dbo.optContract
 
+
 /*
-	while expr
+	while loop
+  
+  while logical expression
 	begin
 	...
 	end
