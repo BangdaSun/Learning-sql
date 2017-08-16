@@ -9,18 +9,18 @@
 	adding a WITH() clause directly before statements like 
 	SELECT, INSERT, UPDATE, DELETE, CREATE VIEW etc
 	
-	If more than one CTE is in the with, comma is needed to separate;
+	If more than one CTE is in the with, comma is needed to separate
 	For each CTE:
 		1. name
 		2. AS clause
 		3. SELECT clause
 		4. column names (separated by comma)
 		
-	
 	https://www.simple-talk.com/sql/t-sql-programming/sql-server-cte-basics/
+  https://stackoverflow.com/questions/5177346/what-is-the-advantage-of-common-table-expression-in-sql-server
 */
 
--- Creating a non-recursive CTE
+-- Non-recursive CTE
 with cteExample (cte_optId, cte_bid, cte_ask, cte_close_)
 as
 (
@@ -40,13 +40,11 @@ from cteExample ctee join optPrice op on ctee.cte_optId = op.optId
 	After we've run the statement, the CTE result set is not available
 	to other statements. 
 */
-select * from cteExample
--- this query won't work
+select * from cteExample -- this query won't work
 
-/*
-	example of recursive cte:
-	return the days between a start date and end date
-*/
+
+-- Recursive cte:
+-- return the days between a start date and end date
 declare @startDate date
 declare @endDate date
 set @startDate = '20170605'
