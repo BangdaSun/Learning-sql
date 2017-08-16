@@ -1,43 +1,34 @@
 /*
-	apply operator
+  temporary table vs table variable
 	
-	allows user to invoke a table-valued function for each row and return an outer table of a query
-	(table function: return a table data type, can be powerful alternatives to views)
+  temporary table: 
+  create table #tmp (
+    ...
+  )
+  insert into #tmp
+  select *
+    from table
+
+
+  table variable:
+  declare @table (
+    ...
+  )
 	
-	select *
-	from table cross apply tablefunc
+  notice: use alias for table variable: @table tbl => tbl.col
 */
 
 /*
-	temporary table vs table variable
-	
-	temporary table: 
-	create table #tmp (
-		...
-	)
-	insert into #tmp
-	select *
-	from table
-	
-	table variable:
-	declare @table (
-		...
-	)
-	
-	notice: use sql alias: @table tbl => tbl.col
-*/
-
-/*
-	Example: rank the grade of student in each class
-		over(),
-		partition by ..., (? group by)
-		order by...,
-		row_number() - window function in sql server
+  Example: rank the grade of student in each class
+    over(),
+    partition by ..., (? group by)
+    order by...,
+    row_number() - window function in sql server
 */
 declare @tbl table (  -- create a table variable
-	id int,
-	class varchar(1),
-	grade float
+  id int,
+  class varchar(1),
+  grade float
 )
 insert into @tbl values(1001, 'A', 90)
 insert into @tbl values(1002, 'A', 89)
@@ -56,3 +47,16 @@ select tbl.class, tbl.grade, ROW_NUMBER() over(partition by tbl.class order by t
 from @tbl tbl -- better use alias, and run the whole chunk simulateneously (return error if run separatedly)
 
 -- compared with table variable: temporary table need to be named as #tbl, also need to be dropped after created and manipulated
+
+
+/*
+  apply operator
+	
+  allows user to invoke a table-valued function for each row and return an outer table of a query
+  the parameter of the function would be values in rows of table
+  (table function: return a table data type, can be powerful alternatives to views)
+
+  cross apply
+  select *
+  from table cross apply tableFunction
+*/
