@@ -1,5 +1,5 @@
 /*
-	declare varibales
+declare varibales
 */
 declare @a int
 set @a = 3
@@ -20,7 +20,7 @@ select @b -- return 3
 
 
 /*
-	if - else (no else if statement here)
+  if - else (no else if statement here)
 */
 if (@a < 4) 
 	select 'small a'
@@ -29,10 +29,10 @@ else
 
 
 /*
-	begin - end
+  begin - end
 */
 begin 
-	declare @salary float
+  declare @salary float
 	declare @hour int
 	set @salary = 22
 	set @hour = 40
@@ -43,7 +43,7 @@ select @salary -- won't work
 
 
 /*
-	case - when - end
+  case - when - end
 */
 -- data
 select top 100 exercise, COUNT(exercise)
@@ -69,7 +69,7 @@ from ovs.dbo.optContract
 
 
 /*
-	while loop
+  while loop
   
   while logical expression
 	begin
